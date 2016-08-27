@@ -2,28 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// TASK TASK TASK
-/// </summary>
-[System.Serializable]
-public class Task
-{
-    public Vector3 destination;
-    public enum action { WALK, FURNACE, WOOD };
-    public action a;
-    public Interactable calledMe;
-
-    public Task(Vector3 Destination, action A = action.WALK, Interactable CalledMe = null)
-    {
-        destination = Destination;
-        a = A;
-        calledMe = CalledMe;
-    }
-}
-/// <summary>
-/// END END END
-/// </summary>
-
 public class Mummy : MonoBehaviour
 {
     public bool isSelected = false;
@@ -35,14 +13,14 @@ public class Mummy : MonoBehaviour
     private Platform nextPlatform = null;
 
     private Queue<Task> tasks;
-    private List<Item> inventory;
+    public List<Item> inventory;
     private bool onLadder = false;
 
 	void Start ()
     {
         tasks = new Queue<Task>();
         inventory = new List<Item>();
-
+		marker = GameObject.Find ("Marker").transform;
         StartCoroutine("TaskManager");
 	}
 	
@@ -114,7 +92,7 @@ public class Mummy : MonoBehaviour
                             if (item.name == "WOOD" && item.amount > 0)
                             {
                                 item.amount--;
-                                t.calledMe.Interact();
+								t.calledMe.Interact();
                             }
                         }
                         break;
@@ -131,6 +109,10 @@ public class Mummy : MonoBehaviour
                         if (!found)
                             inventory.Add(new Item("WOOD"));
                         break;
+				case Task.action.WAKE_THE_DEAD:
+					// Pass the transform of the mummy to the function.
+					t.calledMe.Interact (transform);
+					break;
                 }
             }
             else

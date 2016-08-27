@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\Furnace.cs" />
      <Compile Include="Assets\Scripts\Interactable.cs" />
+     <Compile Include="Assets\Scripts\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\Mummy.cs" />
      <Compile Include="Assets\Scripts\Platform.cs" />
      <Compile Include="Assets\Scripts\Volume.cs" />

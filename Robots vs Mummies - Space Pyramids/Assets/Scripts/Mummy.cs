@@ -21,6 +21,7 @@ public class Mummy : MonoBehaviour
         tasks = new Queue<Task>();
         inventory = new List<Item>();
 		marker = GameObject.Find ("Marker").transform;
+
         StartCoroutine("TaskManager");
 	}
 	
